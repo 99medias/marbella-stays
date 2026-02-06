@@ -2,7 +2,7 @@ import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import CategoryBar from "@/components/CategoryBar";
 import PropertyGrid from "@/components/PropertyGrid";
-import CTANeighborhoods from "@/components/CTANeighborhoods";
+import Neighborhoods from "@/components/Neighborhoods";
 import Experiences from "@/components/Experiences";
 import Testimonials from "@/components/Testimonials";
 import CTABanner from "@/components/CTABanner";
@@ -16,7 +16,7 @@ export default function Home() {
         <Hero />
         <CategoryBar />
         <PropertyGrid />
-        <CTANeighborhoods />
+        <Neighborhoods />
         <Experiences />
         <Testimonials />
         <CTABanner />
