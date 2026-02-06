@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { Star, Clock } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const experiences = [
   {
@@ -49,11 +50,13 @@ const experiences = [
 ];
 
 export default function Experiences() {
+  const scrollRef = useScrollAnimation();
+
   return (
-    <section id="experiences" className="section-padding bg-cream">
+    <section id="experiences" className="section-padding bg-cream" ref={scrollRef}>
       <div className="mx-auto max-w-7xl">
         {/* Section Header */}
-        <div className="mb-14 text-center">
+        <div className="animate-on-scroll mb-14 text-center">
           <p className="mb-3 text-sm font-medium uppercase tracking-widest text-golden">
             Curated For You
           </p>
@@ -68,19 +71,19 @@ export default function Experiences() {
 
         {/* Horizontal scroll on mobile, grid on desktop */}
         <div className="flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory md:grid md:grid-cols-2 lg:grid-cols-4 md:overflow-x-visible md:pb-0">
-          {experiences.map((exp) => (
+          {experiences.map((exp, i) => (
             <div
               key={exp.id}
-              className="group min-w-[280px] shrink-0 snap-start cursor-pointer md:min-w-0"
+              className={`animate-on-scroll delay-${i + 1} group min-w-[280px] shrink-0 snap-start cursor-pointer md:min-w-0`}
             >
-              <div className="card-luxury overflow-hidden">
+              <div className="card-luxury card-hover-lift overflow-hidden">
                 {/* Image */}
                 <div className="relative aspect-[3/2] overflow-hidden">
                   <Image
                     src={exp.image}
                     alt={exp.title}
                     fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-110"
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
                     unoptimized
                     sizes="(max-width: 640px) 280px, (max-width: 1024px) 50vw, 25vw"
                   />

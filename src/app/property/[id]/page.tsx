@@ -147,9 +147,9 @@ export default function PropertyDetailPage({
         <div className="mx-auto max-w-7xl px-5 py-4 md:px-8">
           <Link
             href="/"
-            className="inline-flex items-center gap-2 text-sm text-navy/60 transition-colors hover:text-golden"
+            className="inline-flex items-center gap-2 rounded-full px-4 py-2.5 text-sm text-navy/60 transition-all duration-200 hover:text-golden hover:bg-golden/5 active:scale-[0.97]"
           >
-            <ArrowLeft className="h-4 w-4" />
+            <ArrowLeft className="h-4 w-4 transition-transform duration-200 group-hover:-translate-x-0.5" />
             Back to listings
           </Link>
         </div>
@@ -228,12 +228,12 @@ export default function PropertyDetailPage({
                   </div>
                 </div>
                 <div className="flex gap-2">
-                  <button className="flex h-10 w-10 items-center justify-center rounded-full border border-navy/10 transition-colors hover:border-golden/30 hover:bg-golden/5">
-                    <Share2 className="h-4 w-4 text-navy/60" />
+                  <button className="flex h-11 w-11 items-center justify-center rounded-full border border-navy/10 transition-all duration-200 hover:border-golden/30 hover:bg-golden/5 hover:scale-110 active:scale-95">
+                    <Share2 className="h-[18px] w-[18px] text-navy/60" />
                   </button>
                   <button
                     onClick={() => setSaved(!saved)}
-                    className="flex h-10 w-10 items-center justify-center rounded-full border border-navy/10 transition-colors hover:border-golden/30 hover:bg-golden/5"
+                    className="flex h-11 w-11 items-center justify-center rounded-full border border-navy/10 transition-all duration-200 hover:border-golden/30 hover:bg-golden/5 hover:scale-110 active:scale-95"
                   >
                     <Heart
                       className={`h-4 w-4 ${
@@ -336,7 +336,7 @@ export default function PropertyDetailPage({
                   {displayedAmenities.map((amenity) => (
                     <div
                       key={amenity}
-                      className="flex items-center gap-3 rounded-lg border border-navy/5 bg-white p-3 transition-colors hover:border-golden/20"
+                      className="flex items-center gap-3 rounded-lg border border-navy/5 bg-white p-3 transition-all duration-200 hover:border-golden/20 hover:shadow-sm hover:translate-x-1"
                     >
                       <span className="text-golden">
                         {amenityIcons[amenity] || (
@@ -350,7 +350,7 @@ export default function PropertyDetailPage({
                 {property.amenities.length > 6 && (
                   <button
                     onClick={() => setShowAllAmenities(!showAllAmenities)}
-                    className="mt-4 flex items-center gap-2 rounded-full border border-navy/15 px-5 py-2.5 text-sm font-medium text-navy transition-colors hover:border-golden hover:text-golden"
+                    className="mt-4 flex h-11 items-center gap-2 rounded-full border border-navy/15 px-6 text-sm font-medium text-navy transition-all duration-200 hover:border-golden hover:text-golden hover:shadow-sm active:scale-[0.97]"
                   >
                     {showAllAmenities
                       ? "Show less"
@@ -399,7 +399,7 @@ export default function PropertyDetailPage({
                       </span>
                       <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-navy/10">
                         <div
-                          className="h-full rounded-full bg-golden"
+                          className="h-full rounded-full bg-golden animate-bar"
                           style={{ width: `${(cat.score / 5) * 100}%` }}
                         />
                       </div>
@@ -415,7 +415,7 @@ export default function PropertyDetailPage({
                   {reviews.map((review) => (
                     <div
                       key={review.id}
-                      className="rounded-xl border border-navy/5 bg-white p-5"
+                      className="rounded-xl border border-navy/5 bg-white p-5 transition-all duration-300 hover:border-golden/15 hover:shadow-sm"
                     >
                       <div className="mb-3 flex items-center justify-between">
                         <div className="flex items-center gap-3">
@@ -474,7 +474,7 @@ export default function PropertyDetailPage({
                         type="date"
                         value={checkIn}
                         onChange={(e) => setCheckIn(e.target.value)}
-                        className="w-full text-sm text-navy outline-none"
+                        className="w-full text-sm text-navy outline-none transition-colors duration-200 focus:text-golden"
                       />
                     </div>
                     <div className="p-3">
@@ -485,7 +485,7 @@ export default function PropertyDetailPage({
                         type="date"
                         value={checkOut}
                         onChange={(e) => setCheckOut(e.target.value)}
-                        className="w-full text-sm text-navy outline-none"
+                        className="w-full text-sm text-navy outline-none transition-colors duration-200 focus:text-golden"
                       />
                     </div>
                   </div>
@@ -496,7 +496,7 @@ export default function PropertyDetailPage({
                     <select
                       value={guestCount}
                       onChange={(e) => setGuestCount(Number(e.target.value))}
-                      className="w-full text-sm text-navy outline-none"
+                      className="w-full text-sm text-navy outline-none transition-colors duration-200 focus:text-golden"
                     >
                       {Array.from({ length: property.guests }).map((_, i) => (
                         <option key={i + 1} value={i + 1}>

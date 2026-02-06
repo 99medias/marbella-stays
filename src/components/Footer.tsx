@@ -61,12 +61,12 @@ export default function Footer() {
               <h3 className="mb-5 font-[family-name:var(--font-heading)] text-base font-semibold text-white">
                 {column.title}
               </h3>
-              <ul className="flex flex-col gap-3">
+              <ul className="flex flex-col gap-1">
                 {column.links.map((link) => (
                   <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="text-sm text-white/60 transition-colors hover:text-golden"
+                      className="inline-block rounded-md px-2 py-2 text-sm text-white/60 transition-all duration-200 hover:text-golden hover:translate-x-1 active:text-golden-dark"
                     >
                       {link.label}
                     </Link>
@@ -90,22 +90,22 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* Social Links */}
-          <div className="flex items-center gap-4">
+          {/* Social Links — 44px touch targets */}
+          <div className="flex items-center gap-3">
             {socialLinks.map((social) => (
               <Link
                 key={social.label}
                 href={social.href}
                 aria-label={social.label}
-                className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 text-white/50 transition-all hover:border-golden/40 hover:text-golden"
+                className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 text-white/50 transition-all duration-300 hover:border-golden/40 hover:text-golden hover:scale-110 active:scale-95"
               >
-                <social.icon className="h-4 w-4" />
+                <social.icon className="h-[18px] w-[18px]" />
               </Link>
             ))}
           </div>
 
-          {/* Language Selector */}
-          <button className="flex items-center gap-2 rounded-full border border-white/10 px-4 py-2 text-sm text-white/60 transition-colors hover:border-golden/30 hover:text-white">
+          {/* Language Selector — 44px min height */}
+          <button className="flex h-11 items-center gap-2 rounded-full border border-white/10 px-5 text-sm text-white/60 transition-all duration-200 hover:border-golden/30 hover:text-white active:scale-[0.97]">
             <Globe className="h-4 w-4" />
             <span>English (US)</span>
           </button>

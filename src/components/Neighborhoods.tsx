@@ -1,5 +1,8 @@
+"use client";
+
 import Image from "next/image";
 import { MapPin } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const neighborhoods = [
   {
@@ -54,11 +57,13 @@ const neighborhoods = [
 ];
 
 export default function Neighborhoods() {
+  const scrollRef = useScrollAnimation();
+
   return (
-    <section className="section-padding bg-cream">
+    <section className="section-padding bg-cream" ref={scrollRef}>
       <div className="mx-auto max-w-7xl">
         {/* Section Header */}
-        <div className="mb-14 text-center">
+        <div className="animate-on-scroll mb-14 text-center">
           <p className="mb-3 text-sm font-medium uppercase tracking-widest text-golden">
             Explore Areas
           </p>
@@ -76,12 +81,12 @@ export default function Neighborhoods() {
           {neighborhoods.map((hood, index) => (
             <div
               key={hood.id}
-              className={`group cursor-pointer ${
+              className={`animate-on-scroll delay-${Math.min(index + 1, 4)} group cursor-pointer ${
                 index < 2 ? "sm:col-span-1 lg:col-span-1 lg:row-span-2" : ""
               }`}
             >
               <div
-                className={`relative overflow-hidden rounded-2xl ${
+                className={`relative overflow-hidden rounded-2xl transition-all duration-500 hover:shadow-xl ${
                   index < 2
                     ? "h-64 sm:h-72 lg:h-full lg:min-h-[420px]"
                     : "h-56 sm:h-64"
@@ -91,12 +96,12 @@ export default function Neighborhoods() {
                   src={hood.image}
                   alt={hood.name}
                   fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
                   unoptimized
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-navy/80 via-navy/20 to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 p-5 lg:p-6">
+                <div className="absolute inset-0 bg-gradient-to-t from-navy/80 via-navy/20 to-transparent transition-opacity duration-300 group-hover:from-navy/90" />
+                <div className="absolute bottom-0 left-0 right-0 p-5 lg:p-6 transition-transform duration-300 group-hover:translate-y-[-4px]">
                   <div className="mb-1.5 flex items-center gap-1.5">
                     <MapPin className="h-3.5 w-3.5 text-golden" />
                     <span className="text-xs font-medium uppercase tracking-wider text-golden">
@@ -110,7 +115,7 @@ export default function Neighborhoods() {
                   >
                     {hood.name}
                   </h3>
-                  <p className="mt-0.5 text-sm text-white/70 line-clamp-1">
+                  <p className="mt-0.5 text-sm text-white/70 line-clamp-1 transition-colors duration-300 group-hover:text-white/90">
                     {hood.description}
                   </p>
                 </div>

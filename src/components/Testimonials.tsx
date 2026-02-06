@@ -1,5 +1,8 @@
+"use client";
+
 import Image from "next/image";
 import { Star, Quote } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const testimonials = [
   {
@@ -35,11 +38,13 @@ const testimonials = [
 ];
 
 export default function Testimonials() {
+  const scrollRef = useScrollAnimation();
+
   return (
-    <section className="section-padding bg-navy">
+    <section className="section-padding bg-navy" ref={scrollRef}>
       <div className="mx-auto max-w-7xl">
         {/* Section Header */}
-        <div className="mb-14 text-center">
+        <div className="animate-on-scroll mb-14 text-center">
           <p className="mb-3 text-sm font-medium uppercase tracking-widest text-golden">
             Guest Stories
           </p>
@@ -54,19 +59,19 @@ export default function Testimonials() {
 
         {/* Testimonials Grid */}
         <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-          {testimonials.map((testimonial) => (
+          {testimonials.map((testimonial, i) => (
             <div
               key={testimonial.id}
-              className="rounded-2xl border border-golden/15 bg-white/5 p-8 transition-all duration-300 hover:-translate-y-1"
+              className={`animate-on-scroll delay-${i + 1} rounded-2xl border border-golden/15 bg-white/5 p-8 transition-all duration-400 hover:-translate-y-2 hover:border-golden/30 hover:bg-white/8`}
             >
               {/* Quote icon */}
               <Quote className="mb-4 h-8 w-8 text-golden/30" />
 
               {/* Stars */}
               <div className="mb-4 flex gap-1">
-                {Array.from({ length: testimonial.rating }).map((_, i) => (
+                {Array.from({ length: testimonial.rating }).map((_, j) => (
                   <Star
-                    key={i}
+                    key={j}
                     className="h-3.5 w-3.5 fill-golden text-golden"
                   />
                 ))}
@@ -79,7 +84,7 @@ export default function Testimonials() {
 
               {/* Author */}
               <div className="flex items-center gap-3">
-                <div className="relative h-10 w-10 overflow-hidden rounded-full">
+                <div className="relative h-10 w-10 overflow-hidden rounded-full ring-2 ring-golden/20">
                   <Image
                     src={testimonial.avatar}
                     alt={testimonial.name}
